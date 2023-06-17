@@ -1,3 +1,4 @@
+//Error file for generating not found error message and status code
 const { StatusCodes } = require("http-status-codes");
 const CustomAPIError = require("./custom-api-error");
 

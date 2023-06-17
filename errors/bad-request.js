@@ -1,3 +1,4 @@
+//Error file for generating bad-request error message and status code
 const { StatusCodes } = require("http-status-codes");
 const CustomAPIError = require("./custom-api-error");
 
