@@ -5,8 +5,12 @@ const {
     addMember,
     deleteMember
 } = require('../controllers/memberController');
+const { 
+    authMiddleware, 
+    authorizeRole 
+} = require('../middleware/authentication');
 
-router.route('/').post(addMember);
-router.route('/:id').delete(deleteMember);
+router.route('/').post(authMiddleware,authorizeRole(["Community Admin"]),addMember);
+router.route('/:id').delete(authMiddleware,authorizeRole(["Community Admin", "Community Moderator"]),deleteMember);
 
 module.exports = router;
