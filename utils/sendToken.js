@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const sendToken = (user, statusCode, res) => {
-    const token = user.createJWT();
+    const access_token = user.createJWT();
   
     //options for cookies
     const options = {
@@ -12,11 +12,13 @@ const sendToken = (user, statusCode, res) => {
     const data = _.omit(user.toObject(), 'password');
   
     //creates a cookie
-    res.status(statusCode).cookie("token", token, options).json({
+    res.status(statusCode).cookie("access_token", access_token, options).json({
       status: true,
-      content: data,
-      meta: {
-        access_token: token
+      content: {
+        data: data,
+        meta: {
+          access_token: access_token
+        }
       }
     });
   };

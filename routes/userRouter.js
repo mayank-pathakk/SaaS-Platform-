@@ -8,11 +8,14 @@ const {
     signUpUser,
     showUser,
 } = require('../controllers/userController');
+const {
+    authMiddleware,
+} = require("../middleware/authentication");
 
 //routing the paths to controllers
 router.route('/signin').post(signInUser);
 router.route('/signup').post(signUpUser);
-router.route('/me').get(showUser);
+router.route('/me').get(authMiddleware, showUser);
 
 //exports
 module.exports = router;

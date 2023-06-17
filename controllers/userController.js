@@ -44,10 +44,13 @@ const signUpUser = async(req,res) => {
 
 //Shows the details of existing user to that user only
 const showUser = async(req,res) => {
-    res.status(200).json({
-        status: true,
-        content: "Connected to show user"
-    })
+    const user = await User.findById(req.user._id);
+    res.status(StatusCodes.OK).json({
+      status: true,
+      content: {
+        data: user
+      } 
+    });
 }
 
 //exports
