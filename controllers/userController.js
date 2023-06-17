@@ -8,15 +8,25 @@ const {
     CustomAPIError,
   } = require("../errors");
 
-//SignInUser helps add a new user
+//SignInUser helps an existing user to signin
 const signInUser = async(req,res) => {
-    res.status(200).json({
-        status: true,
-        content: "Connected to signIn"
-    })
+    const { email, password } = req.body;
+    if (!email || !password) {
+      throw new BadRequest(`Please enter the email and password`);
+    }
+    const user = await User.findOne({ email }).select("+password");
+    if (!user) {
+      throw new Unauthorized(`Invalid email or password`);
+    }
+    const checkPassword = await user.isPasswordCorrect(password);
+    if (!checkPassword) {
+      throw new Unauthorized(`Invalid email or passwords`);
+    }
+    
+    sendToken(user, StatusCodes.OK, res);
 }
 
-//SignUpUser helps an existing user to signup
+//SignUpUser helps add a new user
 const signUpUser = async(req,res) => {
     //Takes email, name and password from the request body
     const { email, name, password } = req.body;
