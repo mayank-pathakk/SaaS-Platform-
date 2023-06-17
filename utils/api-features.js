@@ -1,3 +1,4 @@
+//This class adds the required utility features such as pagination
 class APIFeatures {
     constructor(query, queryStr) {
         this.query = query;
