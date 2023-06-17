@@ -33,9 +33,11 @@ const connectDB = require('./db/connect');
 //route imports
 const userRouter = require('./routes/userRouter');
 const communityRouter = require('./routes/communityRouter');
+const roleRouter = require('./routes/roleRouter');
 
 //routing the paths to route imports
 app.use('/v1/auth', userRouter);
+app.use('/v1/role', roleRouter);
 app.use('/v1/community', communityRouter);
 app.use(errorHandlerMiddleware);
 app.use(notFound);

@@ -12,8 +12,7 @@ const {
     authMiddleware
 } = require('../middleware/authentication');
 
-router.route('/').post(authMiddleware, createCommunity);
-router.route('/').get(getAllCommunity);
+router.route('/').post(authMiddleware, createCommunity).get(getAllCommunity);
 router.route('/:id/members').get(getAllCommunityMembers);
 router.route('/me/owner').get(authMiddleware ,getOwnedCommunity);
 router.route('/me/member').get(authMiddleware, getJoinedCommunity);
