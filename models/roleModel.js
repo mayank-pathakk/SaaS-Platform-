@@ -6,7 +6,6 @@ const RoleSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: [2, 'Must be greater than 2'],
-        unique: true
     }
 }, {
     timestamps: true,

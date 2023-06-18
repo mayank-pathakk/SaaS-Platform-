@@ -9,7 +9,7 @@ const {
     NotFound,
     CustomAPIError,
   } = require("../errors");
-  const ApiFeatures = require("../utils/api-features");
+const ApiFeatures = require("../utils/api-features");
 
 //This function is used to create new Communities
 const createCommunity = async (req, res) => {

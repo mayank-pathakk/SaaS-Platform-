@@ -14,7 +14,7 @@ const signInUser = async(req,res) => {
     if (!email || !password) {
       throw new BadRequest(`Please enter the email and password`);
     }
-    const user = await User.findOne({ email }).select("+password");
+    const user = await User.findOne({ email });
     if (!user) {
       throw new Unauthorized(`Invalid email or password`);
     }
